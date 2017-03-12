@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.epam.mentoring.StructuralPattern.viewers.IViewer;
 
-public class AnimalBridgeViewer extends BridgeViewer {
+public class ZooBridgeViewer extends BridgeViewer {
 	private List<Animal> animals;
 
-	public AnimalBridgeViewer(IViewer viewer) {
+	public ZooBridgeViewer(IViewer viewer) {
 		super(viewer);
 	}
 
@@ -19,7 +19,7 @@ public class AnimalBridgeViewer extends BridgeViewer {
 		this.animals = animals;
 	}
 
-	public void show(List<Animal> animals) {
+	public void show() {
 		viewer.view(animals);
 	}
 }

@@ -1,7 +1,5 @@
 package com.epam.mentoring.StructuralPattern.model;
 
-import java.util.List;
-
 import com.epam.mentoring.StructuralPattern.viewers.IViewer;
 
 public abstract class BridgeViewer {
@@ -11,6 +9,6 @@ public abstract class BridgeViewer {
 		this.viewer = viewer;
 	}
 
-	public abstract void show(List<Animal> animals);
+	public abstract void show();
 
 }
