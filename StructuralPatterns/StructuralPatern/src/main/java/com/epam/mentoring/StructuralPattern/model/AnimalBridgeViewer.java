@@ -4,12 +4,11 @@ import java.util.List;
 
 import com.epam.mentoring.StructuralPattern.viewers.IViewer;
 
-public class AnimalList {
-	private IViewer viewer;
+public class AnimalBridgeViewer extends BridgeViewer {
 	private List<Animal> animals;
 
-	public AnimalList(IViewer viewer) {
-		this.viewer = viewer;
+	public AnimalBridgeViewer(IViewer viewer) {
+		super(viewer);
 	}
 
 	public List<Animal> getAnimals() {
