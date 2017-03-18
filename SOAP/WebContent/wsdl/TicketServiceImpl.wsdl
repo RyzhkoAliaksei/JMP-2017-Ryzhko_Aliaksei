@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://soap.mentoring.epam.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://soap.mentoring.epam.com" xmlns:intf="http://soap.mentoring.epam.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://model.soap.mentoring.epam.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://model.soap.mentoring.epam.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="Person">
+    <sequence>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="surname" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Ticket">
+    <sequence>
+     <element name="cityArrival" nillable="true" type="xsd:string"/>
+     <element name="cityDeparture" nillable="true" type="xsd:string"/>
+     <element name="dateArrival" nillable="true" type="xsd:dateTime"/>
+     <element name="dateDeparture" nillable="true" type="xsd:dateTime"/>
+     <element name="id" type="xsd:int"/>
+     <element name="person" nillable="true" type="tns1:Person"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deleteTicketResponse">
+
+      <wsdl:part name="deleteTicketReturn" type="xsd:boolean">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTicketResponse">
+
+      <wsdl:part name="getTicketReturn" type="tns1:Ticket">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addTicketRequest">
+
+      <wsdl:part name="ticket" type="tns1:Ticket">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateTicketResponse">
+
+      <wsdl:part name="updateTicketReturn" type="xsd:boolean">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addTicketResponse">
+
+      <wsdl:part name="addTicketReturn" type="xsd:boolean">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateTicketRequest">
+
+      <wsdl:part name="id" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteTicketRequest">
+
+      <wsdl:part name="id" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTicketRequest">
+
+      <wsdl:part name="id" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TicketServiceImpl">
+
+      <wsdl:operation name="addTicket" parameterOrder="ticket">
+
+         <wsdl:input message="impl:addTicketRequest" name="addTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addTicketResponse" name="addTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteTicket" parameterOrder="id">
+
+         <wsdl:input message="impl:deleteTicketRequest" name="deleteTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteTicketResponse" name="deleteTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTicket" parameterOrder="id">
+
+         <wsdl:input message="impl:getTicketRequest" name="getTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTicketResponse" name="getTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateTicket" parameterOrder="id">
+
+         <wsdl:input message="impl:updateTicketRequest" name="updateTicketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateTicketResponse" name="updateTicketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TicketServiceImplSoapBinding" type="impl:TicketServiceImpl">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addTicket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteTicket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTicket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateTicket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateTicketRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateTicketResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TicketServiceImplService">
+
+      <wsdl:port binding="impl:TicketServiceImplPortBinding" name="TicketServiceImplPort">
+
+         <wsdlsoap:address location="http://localhost:8080/service/ticket"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
