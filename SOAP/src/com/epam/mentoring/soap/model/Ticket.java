@@ -7,27 +7,31 @@
 
 package com.epam.mentoring.soap.model;
 
+import java.util.Date;
+
 public class Ticket implements java.io.Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private java.lang.String cityArrival;
+	private String cityArrival;
 
-	private java.lang.String cityDeparture;
+	private String cityDeparture;
 
-	private java.util.Calendar dateArrival;
+	private Date dateArrival;
 
-	private java.util.Calendar dateDeparture;
+	private Date dateDeparture;
 
 	private int id;
+	
+	private int price;
 
 	private Person person;
 
 	private State state;
 
-	public java.lang.String getCityArrival() {
+	public String getCityArrival() {
 		return cityArrival;
 	}
 
@@ -35,7 +39,15 @@ public class Ticket implements java.io.Serializable {
 		this.cityArrival = cityArrival;
 	}
 
-	public java.lang.String getCityDeparture() {
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getCityDeparture() {
 		return cityDeparture;
 	}
 
@@ -51,19 +63,19 @@ public class Ticket implements java.io.Serializable {
 		this.state = state;
 	}
 
-	public java.util.Calendar getDateArrival() {
+	public Date getDateArrival() {
 		return dateArrival;
 	}
 
-	public void setDateArrival(java.util.Calendar dateArrival) {
+	public void setDateArrival(Date dateArrival) {
 		this.dateArrival = dateArrival;
 	}
 
-	public java.util.Calendar getDateDeparture() {
+	public Date getDateDeparture() {
 		return dateDeparture;
 	}
 
-	public void setDateDeparture(java.util.Calendar dateDeparture) {
+	public void setDateDeparture(Date dateDeparture) {
 		this.dateDeparture = dateDeparture;
 	}
 

@@ -14,11 +14,7 @@ public class TicketServiceImpl implements TicketService {
 	private static Map<Integer, Ticket> tickets = new HashMap<Integer, Ticket>();
 
 	public int bookTicket(Ticket ticket) {
-		if (tickets.isEmpty()) {
-			ticket.setId(1);
-		} else {
-			ticket.setId(tickets.size() + 1);
-		}
+		ticket.setId(tickets.size() + 1);
 		ticket.setState(State.BOOKED);
 		tickets.put(ticket.getId(), ticket);
 

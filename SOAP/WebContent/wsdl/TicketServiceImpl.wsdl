@@ -65,9 +65,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   <schema elementFormDefault="qualified" targetNamespace="http://model.soap.mentoring.epam.com" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="Person">
     <sequence>
+     <element name="birthday" nillable="true" type="xsd:dateTime"/>
      <element name="middlename" nillable="true" type="xsd:string"/>
      <element name="name" nillable="true" type="xsd:string"/>
-     <element name="price" type="xsd:int"/>
      <element name="surname" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
@@ -79,6 +79,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="dateDeparture" nillable="true" type="xsd:dateTime"/>
      <element name="id" type="xsd:int"/>
      <element name="person" nillable="true" type="tns1:Person"/>
+     <element name="price" type="xsd:int"/>
      <element name="state" nillable="true" type="xsd:anyType"/>
     </sequence>
    </complexType>

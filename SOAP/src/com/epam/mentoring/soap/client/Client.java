@@ -23,23 +23,23 @@ public class Client {
 		person.setName("Alex");
 		person.setMiddlename("Alexandrovich");
 		person.setSurname("Ryzhko");
-		person.setPrice(5);
+		ticket.setPrice(5);
 		ticket.setCityArrival("Grodno");
 		ticket.setCityDeparture("Kharkiv");
 		ticket.setPerson(person);
+        int bookedTicketId=ticketService.bookTicket(ticket);
+		System.out.println("Ticket added " + bookedTicketId);
 
-		System.out.println("Ticket added " + ticketService.bookTicket(ticket));
-
-		Ticket returnedTicket = ticketService.getTicket(1);
+		Ticket returnedTicket = ticketService.getTicket(bookedTicketId);
 		System.out.println("Ticket " + returnedTicket.getId() + " Person name " + returnedTicket.getPerson().getName()
 				+ " State " + returnedTicket.getState().toString());
 
-		ticketService.payTicket(1);
-		Ticket updatedTicket = ticketService.getTicket(1);
+		ticketService.payTicket(bookedTicketId);
+		Ticket updatedTicket = ticketService.getTicket(bookedTicketId);
 		System.out.println("Ticket " + updatedTicket.getId() + " State " + updatedTicket.getState().toString());
 
-		ticketService.returnTicket(1);
-		System.out.println("Ticket removed " + ticketService.getTicket(1));
+		ticketService.returnTicket(bookedTicketId);
+		System.out.println("Ticket removed " + ticketService.getTicket(bookedTicketId));
 
 	}
 }

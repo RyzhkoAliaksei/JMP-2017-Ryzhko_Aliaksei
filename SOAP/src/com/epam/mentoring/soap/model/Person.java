@@ -1,5 +1,7 @@
 package com.epam.mentoring.soap.model;
 
+import java.util.Date;
+
 public class Person implements java.io.Serializable {
 	/**
 	 * 
@@ -8,30 +10,38 @@ public class Person implements java.io.Serializable {
 	private String Name;
 	private String Surname;
 	private String Middlename;
-	private int price;
+	private Date Birthday;
+
 	public String getName() {
 		return Name;
 	}
+
 	public void setName(String name) {
 		Name = name;
 	}
+
 	public String getSurname() {
 		return Surname;
 	}
+
 	public void setSurname(String surname) {
 		Surname = surname;
 	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
+
 	public String getMiddlename() {
 		return Middlename;
 	}
+
 	public void setMiddlename(String middlename) {
 		Middlename = middlename;
+	}
+
+	public Date getBirthday() {
+		return Birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		Birthday = birthday;
 	}
 
 }
