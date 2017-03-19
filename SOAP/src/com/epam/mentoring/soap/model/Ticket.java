@@ -25,7 +25,7 @@ public class Ticket implements java.io.Serializable {
 
 	private Person person;
 
-	private java.lang.String state;
+	private State state;
 
 	public java.lang.String getCityArrival() {
 		return cityArrival;
@@ -43,11 +43,11 @@ public class Ticket implements java.io.Serializable {
 		this.cityDeparture = cityDeparture;
 	}
 
-	public java.lang.String getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(java.lang.String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 

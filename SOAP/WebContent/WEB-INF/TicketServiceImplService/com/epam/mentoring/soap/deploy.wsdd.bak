@@ -12,35 +12,51 @@
 
   <!-- Services from TicketServiceImplService WSDL service -->
 
-  <service name="TicketServiceImpl" provider="java:RPC" style="rpc" use="encoded">
+  <service name="TicketServiceImpl" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://soap.mentoring.epam.com"/>
       <parameter name="wsdlServiceElement" value="TicketServiceImplService"/>
-      <parameter name="schemaUnqualified" value="http://model.soap.mentoring.epam.com"/>
+      <parameter name="schemaQualified" value="http://soap.mentoring.epam.com,http://model.soap.mentoring.epam.com"/>
       <parameter name="wsdlServicePort" value="TicketServiceImpl"/>
       <parameter name="className" value="com.epam.mentoring.soap.TicketServiceImplSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="TicketServiceImpl"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="addTicket" qname="operNS:addTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="addTicketReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="ticket" type="tns:Ticket" xmlns:tns="http://model.soap.mentoring.epam.com"/>
+      <operation name="bookTicket" qname="operNS:bookTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="retNS:bookTicketReturn" xmlns:retNS="http://soap.mentoring.epam.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:ticket" xmlns:pns="http://soap.mentoring.epam.com" type="tns:Ticket" xmlns:tns="http://model.soap.mentoring.epam.com"/>
       </operation>
-      <operation name="deleteTicket" qname="operNS:deleteTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="deleteTicketReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="id" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      <operation name="returnTicket" qname="operNS:returnTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="retNS:returnTicketReturn" xmlns:retNS="http://soap.mentoring.epam.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://soap.mentoring.epam.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <operation name="getTicket" qname="operNS:getTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="getTicketReturn" returnType="rtns:Ticket" xmlns:rtns="http://model.soap.mentoring.epam.com" soapAction="" >
-        <parameter qname="id" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      <operation name="getTicket" qname="operNS:getTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="retNS:getTicketReturn" xmlns:retNS="http://soap.mentoring.epam.com" returnType="rtns:Ticket" xmlns:rtns="http://model.soap.mentoring.epam.com" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://soap.mentoring.epam.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <operation name="updateTicket" qname="operNS:updateTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="updateTicketReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="id" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      <operation name="payTicket" qname="operNS:payTicket" xmlns:operNS="http://soap.mentoring.epam.com" returnQName="retNS:payTicketReturn" xmlns:retNS="http://soap.mentoring.epam.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://soap.mentoring.epam.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="deleteTicket addTicket getTicket updateTicket"/>
+      <parameter name="allowedMethods" value="payTicket bookTicket returnTicket getTicket"/>
 
       <typeMapping
-        xmlns:ns="http://model.soap.mentoring.epam.com"
-        qname="ns:Person"
-        type="java:com.epam.mentoring.soap.model.Person"
+        xmlns:ns="http://soap.mentoring.epam.com"
+        qname="ns:>payTicket"
+        type="java:com.epam.mentoring.soap.PayTicket"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
-        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://soap.mentoring.epam.com"
+        qname="ns:>returnTicket"
+        type="java:com.epam.mentoring.soap.ReturnTicket"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://soap.mentoring.epam.com"
+        qname="ns:>returnTicketResponse"
+        type="java:com.epam.mentoring.soap.ReturnTicketResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
       />
       <typeMapping
         xmlns:ns="http://model.soap.mentoring.epam.com"
@@ -48,7 +64,47 @@
         type="java:com.epam.mentoring.soap.model.Ticket"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
-        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://soap.mentoring.epam.com"
+        qname="ns:>getTicket"
+        type="java:com.epam.mentoring.soap.GetTicket"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://soap.mentoring.epam.com"
+        qname="ns:>payTicketResponse"
+        type="java:com.epam.mentoring.soap.PayTicketResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model.soap.mentoring.epam.com"
+        qname="ns:Person"
+        type="java:com.epam.mentoring.soap.model.Person"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://soap.mentoring.epam.com"
+        qname="ns:>bookTicketResponse"
+        type="java:com.epam.mentoring.soap.BookTicketResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://soap.mentoring.epam.com"
+        qname="ns:>getTicketResponse"
+        type="java:com.epam.mentoring.soap.GetTicketResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
       />
   </service>
 </deployment>

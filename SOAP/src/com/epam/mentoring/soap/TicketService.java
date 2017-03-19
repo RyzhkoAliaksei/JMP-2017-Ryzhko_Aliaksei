@@ -7,12 +7,12 @@ import com.epam.mentoring.soap.model.Ticket;
 @WebService
 public interface TicketService {
 	@WebMethod
-	public boolean addTicket(Ticket ticket);
+	public int bookTicket(Ticket ticket);
 	@WebMethod
-	public boolean deleteTicket(int id);
+	public boolean returnTicket(int id);
 	@WebMethod
 	public Ticket getTicket(int id);
 	@WebMethod
-	public boolean updateTicket(int id);
+	public boolean payTicket(int id);
 
 }

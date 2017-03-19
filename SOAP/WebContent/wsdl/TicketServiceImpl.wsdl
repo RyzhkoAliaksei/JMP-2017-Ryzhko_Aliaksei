@@ -1,13 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://soap.mentoring.epam.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://soap.mentoring.epam.com" xmlns:intf="http://soap.mentoring.epam.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://model.soap.mentoring.epam.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://soap.mentoring.epam.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://soap.mentoring.epam.com" xmlns:intf="http://soap.mentoring.epam.com" xmlns:tns1="http://model.soap.mentoring.epam.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
-  <schema targetNamespace="http://model.soap.mentoring.epam.com" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <schema elementFormDefault="qualified" targetNamespace="http://soap.mentoring.epam.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.soap.mentoring.epam.com"/>
+   <element name="bookTicket">
+    <complexType>
+     <sequence>
+      <element name="ticket" type="tns1:Ticket"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="bookTicketResponse">
+    <complexType>
+     <sequence>
+      <element name="bookTicketReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="returnTicket">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="returnTicketResponse">
+    <complexType>
+     <sequence>
+      <element name="returnTicketReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTicket">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTicketResponse">
+    <complexType>
+     <sequence>
+      <element name="getTicketReturn" type="tns1:Ticket"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="payTicket">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="payTicketResponse">
+    <complexType>
+     <sequence>
+      <element name="payTicketReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.soap.mentoring.epam.com" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="Person">
     <sequence>
+     <element name="middlename" nillable="true" type="xsd:string"/>
      <element name="name" nillable="true" type="xsd:string"/>
+     <element name="price" type="xsd:int"/>
      <element name="surname" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
@@ -19,15 +79,15 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="dateDeparture" nillable="true" type="xsd:dateTime"/>
      <element name="id" type="xsd:int"/>
      <element name="person" nillable="true" type="tns1:Person"/>
-     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:anyType"/>
     </sequence>
    </complexType>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="deleteTicketResponse">
+   <wsdl:message name="payTicketRequest">
 
-      <wsdl:part name="deleteTicketReturn" type="xsd:boolean">
+      <wsdl:part element="impl:payTicket" name="parameters">
 
       </wsdl:part>
 
@@ -35,47 +95,31 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="getTicketResponse">
 
-      <wsdl:part name="getTicketReturn" type="tns1:Ticket">
+      <wsdl:part element="impl:getTicketResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="addTicketRequest">
+   <wsdl:message name="bookTicketResponse">
 
-      <wsdl:part name="ticket" type="tns1:Ticket">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="updateTicketResponse">
-
-      <wsdl:part name="updateTicketReturn" type="xsd:boolean">
+      <wsdl:part element="impl:bookTicketResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="addTicketResponse">
+   <wsdl:message name="returnTicketRequest">
 
-      <wsdl:part name="addTicketReturn" type="xsd:boolean">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="updateTicketRequest">
-
-      <wsdl:part name="id" type="xsd:int">
+      <wsdl:part element="impl:returnTicket" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="deleteTicketRequest">
+   <wsdl:message name="returnTicketResponse">
 
-      <wsdl:part name="id" type="xsd:int">
+      <wsdl:part element="impl:returnTicketResponse" name="parameters">
 
       </wsdl:part>
 
@@ -83,7 +127,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="getTicketRequest">
 
-      <wsdl:part name="id" type="xsd:int">
+      <wsdl:part element="impl:getTicket" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="payTicketResponse">
+
+      <wsdl:part element="impl:payTicketResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="bookTicketRequest">
+
+      <wsdl:part element="impl:bookTicket" name="parameters">
 
       </wsdl:part>
 
@@ -91,31 +151,31 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="TicketServiceImpl">
 
-      <wsdl:operation name="addTicket" parameterOrder="ticket">
+      <wsdl:operation name="bookTicket">
 
-         <wsdl:input message="impl:addTicketRequest" name="addTicketRequest">
+         <wsdl:input message="impl:bookTicketRequest" name="bookTicketRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:addTicketResponse" name="addTicketResponse">
+         <wsdl:output message="impl:bookTicketResponse" name="bookTicketResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteTicket" parameterOrder="id">
+      <wsdl:operation name="returnTicket">
 
-         <wsdl:input message="impl:deleteTicketRequest" name="deleteTicketRequest">
+         <wsdl:input message="impl:returnTicketRequest" name="returnTicketRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:deleteTicketResponse" name="deleteTicketResponse">
+         <wsdl:output message="impl:returnTicketResponse" name="returnTicketResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="getTicket" parameterOrder="id">
+      <wsdl:operation name="getTicket">
 
          <wsdl:input message="impl:getTicketRequest" name="getTicketRequest">
 
@@ -127,13 +187,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="updateTicket" parameterOrder="id">
+      <wsdl:operation name="payTicket">
 
-         <wsdl:input message="impl:updateTicketRequest" name="updateTicketRequest">
+         <wsdl:input message="impl:payTicketRequest" name="payTicketRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:updateTicketResponse" name="updateTicketResponse">
+         <wsdl:output message="impl:payTicketResponse" name="payTicketResponse">
 
        </wsdl:output>
 
@@ -143,39 +203,39 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:binding name="TicketServiceImplSoapBinding" type="impl:TicketServiceImpl">
 
-      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="addTicket">
+      <wsdl:operation name="bookTicket">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="addTicketRequest">
+         <wsdl:input name="bookTicketRequest">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="addTicketResponse">
+         <wsdl:output name="bookTicketResponse">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="deleteTicket">
+      <wsdl:operation name="returnTicket">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="deleteTicketRequest">
+         <wsdl:input name="returnTicketRequest">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="deleteTicketResponse">
+         <wsdl:output name="returnTicketResponse">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
 
@@ -187,31 +247,31 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
          <wsdl:input name="getTicketRequest">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
          <wsdl:output name="getTicketResponse">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="updateTicket">
+      <wsdl:operation name="payTicket">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="updateTicketRequest">
+         <wsdl:input name="payTicketRequest">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="updateTicketResponse">
+         <wsdl:output name="payTicketResponse">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.mentoring.epam.com" use="encoded"/>
+            <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
 

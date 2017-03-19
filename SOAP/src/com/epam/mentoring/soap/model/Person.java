@@ -7,6 +7,8 @@ public class Person implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private String Name;
 	private String Surname;
+	private String Middlename;
+	private int price;
 	public String getName() {
 		return Name;
 	}
@@ -18,6 +20,18 @@ public class Person implements java.io.Serializable {
 	}
 	public void setSurname(String surname) {
 		Surname = surname;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getMiddlename() {
+		return Middlename;
+	}
+	public void setMiddlename(String middlename) {
+		Middlename = middlename;
 	}
 
 }

@@ -8,7 +8,6 @@ import com.epam.mentoring.soap.model.Person;
 import com.epam.mentoring.soap.model.Ticket;
 
 import java.net.URL;
-import java.util.Arrays;
 
 public class Client {
 
@@ -22,25 +21,24 @@ public class Client {
 		Ticket ticket = new Ticket();
 		Person person = new Person();
 		person.setName("Alex");
+		person.setMiddlename("Alexandrovich");
 		person.setSurname("Ryzhko");
-
-		ticket.setId(1);
+		person.setPrice(5);
 		ticket.setCityArrival("Grodno");
-		ticket.setCityDeparture("Harkiv");
+		ticket.setCityDeparture("Kharkiv");
 		ticket.setPerson(person);
 
-		ticket.setState("booked");
-		System.out.println("Ticket added " + ticketService.addTicket(ticket));
+		System.out.println("Ticket added " + ticketService.bookTicket(ticket));
 
 		Ticket returnedTicket = ticketService.getTicket(1);
 		System.out.println("Ticket " + returnedTicket.getId() + " Person name " + returnedTicket.getPerson().getName()
-				+ " State " + returnedTicket.getState());
+				+ " State " + returnedTicket.getState().toString());
 
-		ticketService.updateTicket(1);
+		ticketService.payTicket(1);
 		Ticket updatedTicket = ticketService.getTicket(1);
-		System.out.println("Ticket " + updatedTicket.getId() + " State " + updatedTicket.getState());
+		System.out.println("Ticket " + updatedTicket.getId() + " State " + updatedTicket.getState().toString());
 
-		ticketService.deleteTicket(1);
+		ticketService.returnTicket(1);
 		System.out.println("Ticket removed " + ticketService.getTicket(1));
 
 	}
