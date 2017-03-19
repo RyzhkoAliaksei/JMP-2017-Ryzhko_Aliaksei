@@ -1,7 +1,7 @@
 package com.epam.mentoring.soap;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import javax.jws.WebService;
 
@@ -11,10 +11,14 @@ import com.epam.mentoring.soap.model.Ticket;
 @WebService(endpointInterface = "com.epam.mentoring.soap.TicketService")
 public class TicketServiceImpl implements TicketService {
 
-	private static Map<Integer, Ticket> tickets = new HashMap<Integer, Ticket>();
+	private static NavigableMap<Integer, Ticket> tickets = new TreeMap<Integer, Ticket>();
 
 	public int bookTicket(Ticket ticket) {
-		ticket.setId(tickets.size() + 1);
+		if (tickets.isEmpty()) {
+			ticket.setId(1);
+		} else {
+			ticket.setId(tickets.lastKey() + 1);
+		}
 		ticket.setState(State.BOOKED);
 		tickets.put(ticket.getId(), ticket);
 
