@@ -22,7 +22,6 @@ def config = {
 			
 			extName 'liveeditaddon'
 			extName 'acceleratorwebservicesaddon'
-			extName 'b2boccaddon'
 		}
 }
 
@@ -30,6 +29,10 @@ task setup << {
 		apply plugin: 'installer-platform-plugin'
 		apply plugin: 'installer-addon-plugin'
 		def pl = platform(config)
+		pl.executeAntTarget 'extgen -Dinput.template=ycommercewebservices -Dinput.name=customocc -Dinput.package=com.epam.mentoring'
+       pl.extensions {
+               extName 'customocc'
+        }
 		pl.setup()
 
 		pl.project.addons {
@@ -41,12 +44,6 @@ task setup << {
 
 		pl.project.addons {
 				names "acceleratorwebservicesaddon"
-				template "ycommercewebservices"
-				storeFronts "ycommercewebservices"
-				platform pl
-		}
-		pl.project.addons {
-				names "b2boccaddon"
 				template "ycommercewebservices"
 				storeFronts "ycommercewebservices"
 				platform pl
