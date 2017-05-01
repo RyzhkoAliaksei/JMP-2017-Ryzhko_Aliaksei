@@ -55,17 +55,6 @@ public class DefaultBookingDAO implements BookingDAO {
 
 	}
 
-	public Long createBooking(Booking booking) {
-		if (bookings.isEmpty()) {
-			booking.setId(1L);
-		} else {
-			booking.setId(bookings.lastKey() + 1L);
-		}
-		booking.setState(State.FREE);
-		bookings.put(booking.getId(), booking);
-		return booking.getId();
-	}
-
 	public Boolean setBooking(Long id, Person person) {
 		Booking booking = bookings.get(id);
 		if ((booking == null) || (booking.getState().equals(State.BOOKED)))
@@ -87,15 +76,6 @@ public class DefaultBookingDAO implements BookingDAO {
 		booking.setClient(null);
 		;
 		return true;
-	}
-
-	public void editBooking(Booking booking) {
-		booking.setState(State.FREE);
-		bookings.put(booking.getId(), booking);
-	}
-
-	public void removeBookingById(Long id) {
-		bookings.remove(id);
 	}
 
 	public Set<Booking> findBookings() {

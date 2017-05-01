@@ -16,10 +16,6 @@ public class DefaultBookingService implements BookingService {
 	@Autowired
 	private BookingDAO bookingDAO;
 
-	public Long createBooking(Booking booking) {
-		return bookingDAO.createBooking(booking);
-	}
-
 	public Boolean setBooking(Long id, Person person) {
 		return bookingDAO.setBooking(id, person);
 	}
@@ -31,14 +27,6 @@ public class DefaultBookingService implements BookingService {
 	public Boolean returnBooking(Long id) {
 
 		return bookingDAO.returnBooking(id);
-	}
-
-	public void editBooking(Booking booking) {
-		bookingDAO.editBooking(booking);
-	}
-
-	public void removeBookingById(Long id) {
-		bookingDAO.removeBookingById(id);
 	}
 
 	public Set<Booking> findBookings() {
