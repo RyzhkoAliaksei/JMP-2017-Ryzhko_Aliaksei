@@ -27,7 +27,7 @@
 		<br />
 <form:label path="date">
 			<spring:message code="booking.date" />:</form:label>
-		<form:input type="date" path="date" placeholder="05/01/2017 12:00" />
+		<form:input path="date" placeholder="05/01/2017 12:00" />
 		<br />
 
 		<input type="submit" value="<spring:message code="save" />" />
