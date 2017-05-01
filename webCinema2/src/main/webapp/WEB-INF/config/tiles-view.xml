@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="base.definition" template="/WEB-INF/tiles-base/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/tiles-base/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/tiles-base/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles-base/footer.jsp" />
+	</definition>
+
+	<definition name="start" extends="base.definition">
+		<put-attribute name="title" value="Booking films - Welcome" />
+		<put-attribute name="body" value="/WEB-INF/views/start.jsp" />
+	</definition>
+	<definition name="bookings" extends="base.definition">
+		<put-attribute name="title" value="Bookings" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/bookings/bookings.jsp" />
+	</definition>
+	<definition name="bookings.form" extends="base.definition">
+    	<put-attribute name="title" value="booking modify"/>
+        <put-attribute name="body" value="/WEB-INF/views/bookings/bookings-form.jsp" />
+    </definition>
+    <definition name="book.ticket.form" extends="base.definition">
+    	<put-attribute name="title" value="booking ticket"/>
+        <put-attribute name="body" value="/WEB-INF/views/clientbooking/client-booking-form.jsp" />
+    </definition>
+    <definition name="booked.tickets" extends="base.definition">
+    	<put-attribute name="title" value="booked tickets for return"/>
+        <put-attribute name="body" value="/WEB-INF/views/clientbooking/return-tickets.jsp" />
+    </definition>
+	
+</tiles-definitions>
