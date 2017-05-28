@@ -38,4 +38,19 @@ public class DefaultBookingService implements BookingService {
 
 		return bookingDAO.findBookedTickets();
 	}
+	
+	
+	public long calculateMethodForUnitTest(int a,int b) {
+		if (b == 0)
+			throw new IllegalArgumentException("Division by zero!");
+		else
+			return a/b;
+	}
+	public void simulateProcessingTimeoutForUnitTest() throws InterruptedException {
+		int [] numbers = {10, 20, 30, 40, 50};
+		 for(int x : numbers){
+	//		 Thread.sleep(1000); 
+	         System.out.print( x );
+	      }
+	}
 }
