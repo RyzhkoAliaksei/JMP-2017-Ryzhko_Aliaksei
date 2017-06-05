@@ -1,6 +1,7 @@
 package com.epam.mentoring.eightFeatureStream;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +38,9 @@ public class App {
 		/// 2.3.1
 		books.stream().filter(b -> b.getNumberOfPages() > 200).forEach(System.out::println);
 		/// 2.3.2
-		Book maxPage = books.stream().max((b1, b2) -> b1.getNumberOfPages() > b2.getNumberOfPages() ? 1 : -1).get();
-		Book minPage = books.stream().min((b1, b2) -> b1.getNumberOfPages() > b2.getNumberOfPages() ? 1 : -1).get();
+		Comparator<Book> bookComparator = (b1, b2)->Integer.compare(b1.getNumberOfPages(),b2.getNumberOfPages());
+		Book maxPage = books.stream().max(bookComparator).get();
+		Book minPage = books.stream().min(bookComparator).get();
 		System.out.println("Book with max page- " + maxPage + " Book with min page- " + minPage);
 		/// 2.3.3
 		System.out.println("Books with single author");

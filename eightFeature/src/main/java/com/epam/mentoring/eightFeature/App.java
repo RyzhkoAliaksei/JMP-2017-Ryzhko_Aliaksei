@@ -21,7 +21,7 @@ public class App {
 		Arrays.sort(persons, (a, b) -> a.getName().compareToIgnoreCase(b.getName()));
 		Arrays.asList(persons).forEach(System.out::println);
 		System.out.println("Sort by age");
-		Arrays.sort(persons, (a, b) -> a.getAge() < b.getAge() ? -1 : a.getAge() == b.getAge() ? 0 : 1);
+		Arrays.sort(persons, (p1, p2)->Integer.compare(p1.getAge(),p2.getAge()));
 		Arrays.asList(persons).forEach(System.out::println);
 
 		/// task 1.2
