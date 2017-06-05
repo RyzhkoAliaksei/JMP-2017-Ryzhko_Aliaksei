@@ -19,8 +19,7 @@ public class App {
 		Person person2 = new Person("Aliaksei", 23);
 		Person person3 = new Person("Ivan", 16);
 		Person person4 = new Person("Petr", 25);
-		List<Person> persons = new ArrayList<Person>();
-		persons.addAll(Arrays.asList(person1, person2, person3, person4));
+		List<Person> persons = Arrays.asList(person1, person2, person3, person4);
 		System.out.println("Sort by name");
 		Collections.sort(persons, (a, b) -> a.getName().compareToIgnoreCase(b.getName()));
 		persons.forEach(System.out::println);
