@@ -1,6 +1,9 @@
 package com.epam.mentoring.eightFeature;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -16,13 +19,14 @@ public class App {
 		Person person2 = new Person("Aliaksei", 23);
 		Person person3 = new Person("Ivan", 16);
 		Person person4 = new Person("Petr", 25);
-		Person[] persons = { person1, person2, person3, person4 };
+		List<Person> persons = new ArrayList<Person>();
+		persons.addAll(Arrays.asList(person1, person2, person3, person4));
 		System.out.println("Sort by name");
-		Arrays.sort(persons, (a, b) -> a.getName().compareToIgnoreCase(b.getName()));
-		Arrays.asList(persons).forEach(System.out::println);
+		Collections.sort(persons, (a, b) -> a.getName().compareToIgnoreCase(b.getName()));
+		persons.forEach(System.out::println);
 		System.out.println("Sort by age");
-		Arrays.sort(persons, (p1, p2)->Integer.compare(p1.getAge(),p2.getAge()));
-		Arrays.asList(persons).forEach(System.out::println);
+		Collections.sort(persons, (p1, p2) -> Integer.compare(p1.getAge(), p2.getAge()));
+		persons.forEach(System.out::println);
 
 		/// task 1.2
 		Function<Person, String> sampleFunction = s -> "This person is " + s + "!!!";
@@ -55,7 +59,7 @@ public class App {
 		function.calculateAverage(person1.getAge(), person2.getAge());
 		System.out.println("check on adult " + person1.getName());
 		function.checkAdult(person1.getAge());
-		//static method
+		// static method
 		System.out.println(ThreeFunction.moreThenEighteen(person1.getAge()));
 
 	}
