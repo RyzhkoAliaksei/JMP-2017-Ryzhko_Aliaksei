@@ -12,7 +12,7 @@ import com.epam.mentoring.eightFeature.model.Person;
 public class App {
 	public static void main(String[] args) {
 		/// task 1.1
-		Person person1 = new Person("Andrei", 18);
+		Person person1 = new Person("Andrei", 19);
 		Person person2 = new Person("Aliaksei", 23);
 		Person person3 = new Person("Ivan", 16);
 		Person person4 = new Person("Petr", 25);
@@ -48,12 +48,15 @@ public class App {
 		executeTask((x, y, z) -> "Group of persons - " + x + " " + y + " " + z, person1, person2, person3);
 		;
 	}
+
 	/// task 1.3 and 3
 	public static void executeTask(ThreeFunction function, Person person1, Person person2, Person person3) {
 		System.out.println(function.apply(person1, person2, person3));
 		function.calculateAverage(person1.getAge(), person2.getAge());
-		System.out.println("check on adult "+person1.getName());
+		System.out.println("check on adult " + person1.getName());
 		function.checkAdult(person1.getAge());
+		//static method
+		System.out.println(ThreeFunction.moreThenEighteen(person1.getAge()));
 
 	}
 }
