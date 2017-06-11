@@ -20,7 +20,7 @@ public class Car implements Runnable {
 
     public void run() {
         try {
-            while ((distance < MAX_DISTANCE)&&(!Thread.interrupted())) {
+            while ((distance < MAX_DISTANCE)) {
                 Thread.sleep(friction);
                 distance += 100;
                 log.info(name + " " + distance);
